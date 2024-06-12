@@ -7,6 +7,25 @@ return {
     { "folke/neodev.nvim", opts = {} },
     { "towolf/vim-helm" }, -- Add this line for Helm support
     { "fatih/vim-go", run = ":GoUpdateBinaries" }, -- Go support
+    { "pearofducks/ansible-vim" }, -- Ansible syntax highlighting
+    { "lepture/vim-jinja" }, -- Jinja2 syntax highlighting
+    {
+      "olexsmir/gopher.nvim",
+      ft = "go",
+      config = function(_, opts)
+        require("gopher").setup(opts)
+      end,
+      build = function()
+        vim.cmd("silent! GoInstallBinaries")
+      end,
+    },
+    { "mfussenegger/nvim-lint" }, -- Linting support
+    {
+      "folke/trouble.nvim",
+      config = function()
+        require("trouble").setup({})
+      end,
+    },
   },
   config = function()
     -- import lspconfig plugin
@@ -140,6 +159,8 @@ return {
             "!FoldedMapping",
             "!LiteralMapping",
             "!GoTemplate",
+            "!helm",
+            "!tpl",
           },
         },
       },
